@@ -5,7 +5,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        double atsakymas = 0;
+        double atsakymas;
         String veiksmas;
         double sk0 = 0;
         double sk1 = 0;
@@ -53,8 +53,7 @@ public class Main {
                     sk0 = input.nextDouble();
                     System.out.println("Įveskite antrą skaičių");//antro skaičiaus pasirinkimas
                     sk1 = input.nextDouble();
-                    sudeti(sk0, sk1);
-                    atsakymas = sk0 + sk1;
+                    atsakymas = sudeti(sk0, sk1);
                     System.out.println("Atsakymas:\t" + sk0 + veiksmas + sk1 + " = " + atsakymas);
                     break;
                 case "-":
