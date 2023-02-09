@@ -15,14 +15,15 @@ public class Main {
         System.out.println("MULTI SKAIČIUOTUVAS 2023 v2.0");
         while (testi = true) {
 
-            System.out.println("Pasirinkite norimą veiksmą: * / + - #");// begin veiksmo pasirinkimas
+            System.out.println("Pasirinkite norimą veiksmą: * / + - # &");// begin veiksmo pasirinkimas
+            Scanner input = new Scanner(System.in);// pirmo skaičiaus įvedimas
             Scanner input2 = new Scanner(System.in);
             Scanner input3 = new Scanner(System.in);
             veiksmas = input2.nextLine();
 
-            if (!(veiksmas.equals("*") || veiksmas.equals("/") || veiksmas.equals("+") || veiksmas.equals("-") || veiksmas.equals("#"))) {
+            if (!(veiksmas.equals("*") || veiksmas.equals("/") || veiksmas.equals("+") || veiksmas.equals("-") || veiksmas.equals("&") || veiksmas.equals("#"))) {
                 System.out.println("Tokio veiskmo dar neišmokau. Rinkis dar sykį :");
-                while (!(veiksmas.equals("*") || veiksmas.equals("/") || veiksmas.equals("+") || veiksmas.equals("-") || veiksmas.equals("#"))) {
+                while (!(veiksmas.equals("*") || veiksmas.equals("/") || veiksmas.equals("+") || veiksmas.equals("-") || veiksmas.equals("&") || veiksmas.equals("#"))) {
                     veiksmas = input2.nextLine();
                 }
 
@@ -30,7 +31,7 @@ public class Main {
 
             switch (veiksmas) {//begin veiksmo naudojimas
                 case "*":
-                    System.out.println("tres or dous");
+                    System.out.println("tres or dous?");
                     switch (input3.nextLine()) {
                         case "tres":
                             dauginti(sk0, sk1, sk2);
@@ -46,10 +47,8 @@ public class Main {
                 case "/":
                     dalinti();
                     break;
-
                 case "+":
                     System.out.println("Įveskite pirmą skaičių");
-                    Scanner input = new Scanner(System.in);// pirmo skaičiaus įvedimas
                     sk0 = input.nextDouble();
                     System.out.println("Įveskite antrą skaičių");//antro skaičiaus pasirinkimas
                     sk1 = input.nextDouble();
@@ -59,14 +58,28 @@ public class Main {
                 case "-":
                     atimti();
                     break;
-
+                case "&":
+                    System.out.println("Įveskite pirmą skaičių:");
+                    sk0 = input.nextDouble();
+                    System.out.println("Įveskite antrą skaičių:");
+                    sk1 = input.nextDouble();
+                    for (int i = 101; i < 200; i++) {
+                        atsakymas = skaiciuotiFormule(sk0, sk1, i);
+                        if (atsakymas < 100) {
+                            System.out.println("Atsakymas:\t(" + sk1 + " + " + sk0 + ") * " + sk1 + " (" + sk1 + " - " + sk0 + ") / " + sk0 + " * " + i + " = " + atsakymas + " < 100");
+                        } else if (atsakymas == 100) {
+                            System.out.println("Atsakymas:\t(" + sk1 + " + " + sk0 + ") * " + sk1 + " (" + sk1 + " - " + sk0 + ") / " + sk0 + " * " + i + " = " + atsakymas + "== 100");
+                        } else
+                            System.out.println("Atsakymas:\t(" + sk1 + " + " + sk0 + ") * " + sk1 + " (" + sk1 + " - " + sk0 + ") / " + sk0 + " * " + i + " = " + atsakymas + " > 100");
+                    }
+                    break;
                 case "#":
                     krengelis(sk0, sk1);
                     break;
 
             }//end veiksmo naudojimas
 
-            System.out.println("Patiko? Dar kartą? Rašykt TAIP, jei gana - NE");
+            System.out.println("Patiko? Dar kartą? Rašykt TAIP, jei pakaks - NE");
             String ats = input2.nextLine();
 
             if (ats.toLowerCase().equals("taip")) {//tikrinimas tęsti ar ne
@@ -88,7 +101,6 @@ public class Main {
         double sk0;
         double sk1;
         double atsakymas;
-
 
         Scanner input = new Scanner(System.in);
         System.out.println("Įveskite pirmą skaičių:");
@@ -224,4 +236,22 @@ public class Main {
         }
 
     }
+
+    /**
+     * Funkcija skaičiuoja veiksmus pagal forumlę : (sk1 + sk0) * sk1 + (sk1 - sk0) / sk0 * i
+     *
+     * @param sk0 skaičius Nr.1
+     * @param sk1 skaičius Nr.1
+     * @return atsakymas
+     */
+    static double skaiciuotiFormule(double sk0, double sk1, int i) {
+
+        double atsakymas;
+        atsakymas = (sk1 + sk0) * sk1 + (sk1 - sk0) / sk0 * i;
+        return atsakymas;
+
+
+    }
 }
+
+
