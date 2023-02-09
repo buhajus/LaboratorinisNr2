@@ -246,9 +246,9 @@ public class Main {
      */
     static double skaiciuotiFormule(double sk0, double sk1, int i) {
 
-        double atsakymas;
-        atsakymas = (sk1 + sk0) * sk1 + (sk1 - sk0) / sk0 * i;
-        return atsakymas;
+
+        return   (sk1 + sk0) * sk1 + (sk1 - sk0) / sk0 * i;
+
 
 
     }
